@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlayerService implements IPlayerService {
@@ -18,6 +19,10 @@ public class PlayerService implements IPlayerService {
         this.playerRepository.saveAll(players);
     }
 
+    @Override
+    public Optional<Player> getByFullName(String playerFullName) {
+        return playerRepository.getByFullName(playerFullName);
+    }
 
 
 }
