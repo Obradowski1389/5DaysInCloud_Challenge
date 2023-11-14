@@ -1,8 +1,8 @@
 package com.example.challenge.controller;
 
 import com.example.challenge.model.Player;
+import com.example.challenge.service.IPlayerService;
 import com.example.challenge.service.Parser;
-import com.example.challenge.service.impl.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping(value = "/api/data", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileController {
     @Autowired
-    private PlayerService playerService;
+    private IPlayerService playerService;
 
     @PostMapping("/uploadFile")
     public ResponseEntity<?> uploadFile(@RequestParam("file")MultipartFile file) {
