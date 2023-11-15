@@ -23,7 +23,8 @@ public class TraditionalDto {
         this.freeThrows = new ShootStat(player.getFreeAttempted(), player.getFreeMade(), player.getGamesPlayed());
         this.twoPoints = new ShootStat(player.getTwoAttempted(), player.getTwoMade(), player.getGamesPlayed());
         this.treePoints = new ShootStat(player.getTreeAttempted(), player.getTreeMade(), player.getGamesPlayed());
-        this.points = (double) Math.round(player.getPoints() / player.getGamesPlayed() * 10) / 10;
+        double tempPoints = player.getFreeMade() + 2*player.getTwoMade() + 3*player.getTreeMade();
+        this.points = (double) Math.round(((tempPoints / player.getGamesPlayed()) * 10 )) / 10;
         this.rebounds = (double) Math.round(player.getRebounds() / player.getGamesPlayed() * 10) / 10;
         this.blocks = (double) Math.round(player.getBlocks() / player.getGamesPlayed() * 10) / 10;
         this.assists = (double) Math.round(player.getAssists() / player.getGamesPlayed() * 10) / 10;

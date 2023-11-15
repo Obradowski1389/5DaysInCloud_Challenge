@@ -60,7 +60,6 @@ public class Player {
     @NotNull
     private double turnovers;
 
-
     private double globalFT;
 
     private double globalTwoPoints;
@@ -97,6 +96,7 @@ public class Player {
 
 
     public void derivedStats() {
+        this.setPoints(this.getPoints() + this.getFreeMade() + 2*this.getTwoMade() + 3*this.getTreeMade());
         this.setGlobalFT(this.getFreeMade() / this.getFreeAttempted());
         this.setGlobalTwoPoints(this.getTwoMade() / this.getTwoAttempted());
         this.setGlobalTreePoints(this.getTreeMade() / this.getTreeAttempted());
@@ -125,9 +125,11 @@ public class Player {
     }
 
     public double calculateVal() {
-        return this.getFreeMade() + 2*this.getTwoMade() + 3*this.getTreeMade() + this.getRebounds() +
+        double temp = this.getFreeMade() + 2*this.getTwoMade() + 3*this.getTreeMade() + this.getRebounds() +
                 this.getBlocks() + this.getAssists() + this.getSteals() -
                 (this.getFreeAttempted()-this.getFreeMade() + this.getTwoAttempted()-this.getTwoMade() +
                 this.getTreeAttempted()-this.getTreeMade() + this.getTurnovers());
+
+        return (double) Math.round(temp / getGamesPlayed() * 10) / 10;
     }
 }

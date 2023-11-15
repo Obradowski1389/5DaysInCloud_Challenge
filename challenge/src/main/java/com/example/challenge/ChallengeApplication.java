@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @SpringBootApplication
@@ -29,7 +30,10 @@ public class ChallengeApplication {
         try {
             IPlayerService playerService = context.getBean(IPlayerService.class);
             BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH));
-            List<Player> players = Parser.parse(reader);
+            List<Player> players = Parser.parse(reader, new ArrayList<>());
+            for (Player p : players) {
+                p.derivedStats();
+            }
             playerService.savePlayers(players);
         } catch (IOException e) {
             throw new RuntimeException(e);

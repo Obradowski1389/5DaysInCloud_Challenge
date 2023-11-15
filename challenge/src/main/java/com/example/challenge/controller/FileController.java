@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -28,7 +29,20 @@ public class FileController {
     public ResponseEntity<?> uploadFile(@RequestParam("file")MultipartFile file) {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
-            List<Player> players = Parser.parse(reader);
+            List<Player> players = Parser.parse(reader, new ArrayList<>());
+            playerService.savePlayers(players);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PostMapping("/appendFile")
+    public ResponseEntity<?> appendFile(@RequestParam("file")MultipartFile file) {
+        try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
+            List<Player> players = Parser.parse(reader, playerService.getAll());
             playerService.savePlayers(players);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (IOException e) {

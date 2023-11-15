@@ -7,6 +7,6 @@ import java.util.Optional;
 
 public interface IPlayerService {
     void savePlayers(List<Player> players);
-
+    List<Player> getAll();
     Optional<Player> getByFullName(String playerFullName);
 }

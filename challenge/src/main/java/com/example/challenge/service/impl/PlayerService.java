@@ -20,6 +20,11 @@ public class PlayerService implements IPlayerService {
     }
 
     @Override
+    public List<Player> getAll() {
+        return playerRepository.getAll();
+    }
+
+    @Override
     public Optional<Player> getByFullName(String playerFullName) {
         return playerRepository.getByFullName(playerFullName);
     }

@@ -15,7 +15,6 @@ public class AdvancedDto {
     private double hollingerAssistRatio;
 
     public AdvancedDto(Player player) {
-        player.derivedStats();
         this.valorization = (player.getVal() );
         this.effectiveFieldGoalPercentage = (double) Math.round(player.getEfg() * 100 * 10) / 10 ;
         this.trueShootingPercentage = (double) Math.round(player.getTrueShooting() * 100 * 10) / 10;
