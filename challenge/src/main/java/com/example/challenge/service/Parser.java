@@ -11,8 +11,12 @@ import java.io.Reader;
 import java.util.*;
 
 public class Parser {
-    public static List<Player> parse(Reader reader) throws IOException {
+    public static List<Player> parse(Reader reader, List<Player> existingPlayers) throws IOException {
         Map<String, Player> playerMap = new HashMap<>();
+
+        for (Player existingPlayer : existingPlayers) {
+            playerMap.put(existingPlayer.getFullName(), existingPlayer);
+        }
 
         CSVParser csvParser = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(reader);
         for (CSVRecord record : csvParser) {
@@ -23,11 +27,7 @@ public class Parser {
             playerMap.put(playerName, player);
         }
 
-        return calculateDerivedStatistics(playerMap.values());
-    }
-
-    private static List<Player> calculateDerivedStatistics(Collection<Player> values) {
-        return new ArrayList<>(values);
+        return new ArrayList<>(playerMap.values());
     }
 
     private static void extractStats(CSVRecord record, Player player) {
@@ -45,7 +45,6 @@ public class Parser {
         player.setAssists(player.getAssists() + checkInputValue(Integer.parseInt(record.get("AST"))));
         player.setSteals(player.getSteals() + checkInputValue(Integer.parseInt(record.get("STL"))));
         player.setTurnovers(player.getTurnovers() + checkInputValue(Integer.parseInt(record.get("TOV"))));
-        player.setPoints(player.getFreeMade() + 2*player.getTwoMade() + 3*player.getTreeMade());
 
     }
 
