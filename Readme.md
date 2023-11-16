@@ -26,7 +26,4 @@ Pomenuti API za datog igrača treba da vraća statistiku na odigranim mečevima.
   
 
 ## Build
-Pokrenite Gradle komandu za izgradnju projekta:
-```
-./gradlew build
-```
+Zahvaljujući Gradle-u, postoji problem za build iz terminala pa preporučujem da se clonira repozitorijum i pokrene iz IDE(Jer JAVA...)
