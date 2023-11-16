@@ -25,5 +25,12 @@ Pomenuti API za datog igrača treba da vraća statistiku na odigranim mečevima.
 
   
 
-## Build
-Zahvaljujući Gradle-u, postoji problem za build iz terminala pa preporučujem da se clonira repozitorijum i pokrene iz IDE(Jer JAVA...)
+## Run
+Pozicionirati se u folder 
+```
+.\5DaysInCloud_Challenge\challenge\target
+```
+I pokrenuti komandom 
+```
+java -jar challenge-0.0.1-SNAPSHOT.jar
+```
