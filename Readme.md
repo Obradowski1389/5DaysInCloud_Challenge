@@ -37,8 +37,9 @@ java -jar challenge-0.0.1-SNAPSHOT.jar
 
 
 ## API
+Napomena: podaci iz L9HomeworkChallengePlayersInput.csv se automatski učitavaju prilikom startovanja aplikacije.
 ```
 GET localhost:8080/stats/player/{PlayerName}
-POST localhost:8080/api/data/uploadFile { file: MoreData.csv }
+POST localhost:8080/api/data/uploadFile { file: data.csv }
 POST localhost:8080/api/data/appendFile { file: MoreData.csv }
 ```
