@@ -34,3 +34,11 @@ I pokrenuti komandom
 ```
 java -jar challenge-0.0.1-SNAPSHOT.jar
 ```
+
+
+## API
+```
+GET localhost:8080/stats/player/{PlayerName}
+POST localhost:8080/api/data/uploadFile { file: MoreData.csv }
+POST localhost:8080/api/data/appendFile { file: MoreData.csv }
+```
